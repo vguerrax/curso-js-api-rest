@@ -1,8 +1,6 @@
 class HomeController {
   index(req, res) {
-    res.json({
-      tudoCerto: true,
-    });
+    res.json({ tudoCerto: true });
   }
 }
 
