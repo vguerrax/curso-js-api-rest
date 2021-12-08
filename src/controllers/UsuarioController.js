@@ -6,17 +6,28 @@ class UsuarioController {
       const usuarios = await Usuario.findAll();
       return res.json(usuarios);
     } catch (e) {
-      return res.json({});
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
     }
   }
 
   async show(req, res) {
     try {
       if (!req.params.id) return res.json({ error: 'id é parâmetro obrigatório.' });
+
       const usuario = await Usuario.findByPk(req.params.id);
-      return res.json((!usuario) ? {} : usuario);
+      if (!usuario) {
+        return res.status(400).json({
+          errors: ['Usuário não existe.'],
+        });
+      }
+
+      return res.json(usuario);
     } catch (e) {
-      return res.json({});
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
     }
   }
 
@@ -34,8 +45,14 @@ class UsuarioController {
   async update(req, res) {
     try {
       if (!req.params.id) return res.json({ error: 'id é parâmetro obrigatório.' });
-      await Usuario.update(req.body, { where: { id: req.params.id } });
+
       const usuario = await Usuario.findByPk(req.params.id);
+      if (!usuario) {
+        return res.status(400).json({
+          errors: ['Usuário não existe.'],
+        });
+      }
+      await usuario.update(req.body);
       return res.status(200).json(usuario);
     } catch (e) {
       return res.status(400).json({
@@ -47,7 +64,14 @@ class UsuarioController {
   async delete(req, res) {
     try {
       if (!req.params.id) return res.json({ error: 'id é parâmetro obrigatório.' });
-      await Usuario.destroy({ where: { id: req.params.id } });
+
+      const usuario = await Usuario.findByPk(req.params.id);
+      if (!usuario) {
+        return res.status(400).json({
+          errors: ['Usuário não existe.'],
+        });
+      }
+      await usuario.destroy();
       return res.status(204).json();
     } catch (e) {
       return res.status(400).json({
