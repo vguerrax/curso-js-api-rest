@@ -1,3 +1,3 @@
 export default {
-  url: 'http://167.172.142.10',
+  url: process.env.APP_URL,
 };
