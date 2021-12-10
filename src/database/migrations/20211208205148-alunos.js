@@ -18,18 +18,34 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       idade: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          isInt: {
+            msg: 'Idade precisa ser um número inteiro',
+          },
+        },
       },
       peso: {
         type: Sequelize.FLOAT,
-        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          isFloat: {
+            msg: 'Peso precisa ser um número inteiro ou de ponto flutuante',
+          },
+        },
       },
       altura: {
         type: Sequelize.FLOAT,
-        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          isFloat: {
+            msg: 'Altura precisa ser um número inteiro ou de ponto flutuante',
+          },
+        },
       },
       created_at: {
         type: Sequelize.DATE,

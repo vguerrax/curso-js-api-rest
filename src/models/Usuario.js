@@ -27,6 +27,19 @@ export default class Usuario extends Model {
             },
           },
         },
+        perfil_id: {
+          type: Sequelize.INTEGER,
+          defaultValue: 0,
+          validate: {
+            isInt: {
+              msg: 'O id do perfil precisa ser um inteiro',
+            },
+            min: {
+              args: 1,
+              msg: 'O id do perfil deve ser válido',
+            },
+          },
+        },
         passwordHash: {
           type: Sequelize.STRING,
           defaultValue: '',
@@ -50,5 +63,13 @@ export default class Usuario extends Model {
     });
 
     return this;
+  }
+
+  passwordIsValid(password) {
+    return bcryptjs.compare(password, this.passwordHash);
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Perfil, { as: 'permissao', foreignKey: 'perfil_id' });
   }
 }

@@ -1,8 +1,7 @@
 import { Router } from 'express';
-import homeController from '../controllers/HomeController';
 
 const router = new Router();
 
-router.get('/', homeController.index);
+router.get('/', (req, res) => res.json('Index'));
 
 export default router;
