@@ -27,13 +27,13 @@ class App {
   }
 
   routes() {
-    this.app.use('/', homeRoutes);
-    this.app.use('/auth/token', tokenRoutes);
-    this.app.use('/perfis', perfilRoutes);
-    this.app.use('/usuarios', usuarioRoutes);
-    this.app.use('/me', meRoutes);
-    this.app.use('/alunos', alunoRoutes);
-    this.app.use('/fotos', fotoRoutes);
+    this.app.use('/api-rest/v2', homeRoutes);
+    this.app.use('/api-rest/v2/auth/token', tokenRoutes);
+    this.app.use('/api-rest/v2/perfis', perfilRoutes);
+    this.app.use('/api-rest/v2/usuarios', usuarioRoutes);
+    this.app.use('/api-rest/v2/me', meRoutes);
+    this.app.use('/api-rest/v2/alunos', alunoRoutes);
+    this.app.use('/api-rest/v2/fotos', fotoRoutes);
   }
 }
 
