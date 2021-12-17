@@ -16,11 +16,8 @@ import fotoRoutes from './routes/fotoRoutes';
 
 dotenv.config();
 
-const whiteList = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://167.172.142.10',
-];
+const whiteList = process.env.CORS_WHITELIST.split(',');
+whiteList.push(process.env.APP_URL);
 
 const corsOptions = {
   origin: (origin, callback) => {
