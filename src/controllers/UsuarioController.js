@@ -61,8 +61,9 @@ class UsuarioController {
       });
       return res.status(201).json(usuario);
     } catch (e) {
+      const errors = e.errors ? e.errors.map((error) => error.message) : e;
       return res.status(400).json({
-        errors: [e.text],
+        errors,
       });
     }
   }
@@ -85,10 +86,11 @@ class UsuarioController {
           attributes: ['id', 'perfil'],
         },
       });
-      return res.status(201).json(usuario);
+      return res.status(200).json(usuario);
     } catch (e) {
+      const errors = e.errors ? e.errors.map((error) => error.message) : e;
       return res.status(400).json({
-        errors: [e.text],
+        errors,
       });
     }
   }
