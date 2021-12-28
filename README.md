@@ -24,3 +24,21 @@ APP_URL=<url_aplicacao>
 APP_PORT=<porta_aplicacao>
 CORS_WHITELIST=<URLs_para_liberacao_no_CORS_separadas_por_virgula>
 ```
+### Criar Base de Dados
+Para criar e popular a base de dados execute os seguintes comandos:
+```shell
+npm run database:create
+npm run database:populate
+```
+
+## Execução
+### DEV
+```shel
+npm run dev
+```
+
+### PROD
+```shell
+npm build
+npm start
+```
